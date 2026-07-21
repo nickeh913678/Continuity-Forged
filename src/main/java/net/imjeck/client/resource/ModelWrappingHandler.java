@@ -51,16 +51,20 @@ return builder.build();
 
 public BakedModel wrap(@Nullable BakedModel model, ResourceLocation modelId) {
 if (model != null && !model.isCustomRenderer() && !modelId.equals(ModelBakery.MISSING_MODEL_LOCATION)) {
-if (wrapCtm) {
+// Only wrap block-state models. Wrapping arbitrary mod item models (e.g. EpicFight
+// weapons/skills) in EmissiveBakedModel breaks their rendering because mods rely on
+// instanceof checks and custom getQuads behavior that the ForwardingBakedModel wrapper
+// interferes with.
 if (modelId instanceof ModelResourceLocation) {
 BlockState state = blockStateModelIds.get(modelId);
 if (state != null) {
+if (wrapCtm) {
 model = new CtmBakedModel(model, state);
-}
-}
 }
 if (wrapEmissive) {
 model = new EmissiveBakedModel(model);
+}
+}
 }
 }
 return model;

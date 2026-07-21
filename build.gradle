@@ -40,8 +40,8 @@ dependencies {
 	minecraft "net.minecraftforge:forge:${project.forge_version}"
 
 	annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-	compileOnly files("F:/Game/Minecraft/Mymodpack/libraries/io/github/llamalad7/mixinextras-common/0.4.1/mixinextras-common-0.4.1.jar")
-	annotationProcessor files("F:/Game/Minecraft/Mymodpack/libraries/io/github/llamalad7/mixinextras-common/0.4.1/mixinextras-common-0.4.1.jar")
+
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.4"))
 }
 
 tasks.withType(JavaCompile).configureEach {
